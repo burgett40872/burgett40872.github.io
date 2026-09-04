@@ -21,6 +21,9 @@
 
       .board {
         height: 100vh;
+        background-image: url("https://static.vecteezy.com/system/resources/thumbnails/002/949/141/small/programming-code-coding-or-hacker-background-vector.jpg");
+        background-repeat:no-repeat;
+        background-size:cover;
       }
     </style>
     <!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -55,8 +58,9 @@
         box.on("click", handleBoxClick);
 
         // moves the Box to a new position on the screen along the X-Axis
-        function moveBoxTo(newPositionX) {
+        function moveBoxTo(newPositionX, newPositionY) {
           box.css("left", newPositionX);
+          box.css("top", newPositionY);
         }
 
         // changes the text displayed on the Box
@@ -69,6 +73,13 @@
         //////////////////////////////////////////////////////////////////
 
         // TODO 2 - Variable declarations
+        var positionX = 0;
+        var points = 0;
+        var speed = 5;
+        var positionY=300;
+        var speedY = 5;
+        var boardHeight = jQuery(window).height();
+
 
 
 
@@ -80,7 +91,23 @@
          * If the box drifts off the screen, turn it around!
          */
         function update() {
-
+        positionX = positionX + speed;
+         positionY = positionY + speedY;
+        moveBoxTo(positionX,positionY);
+        if (positionX > boardWidth){
+          speed *= -1;
+        }
+        if (positionX < 0){
+          speed *= -1;
+        }
+       
+        if (positionY > boardHeight){
+          speedY *= -1;
+        }
+        if (positionY < 0){
+          speedY *= -1;
+        }
+        
         
 
           
@@ -94,6 +121,12 @@
          * - move the box to the left side of the screen.
          */
         function handleBoxClick() {
+          positionX = 0;
+          points++;
+          changeBoxText(points);
+          positionY=300;
+          speedY = 5;
+          speed = 3 * points + 5;
 
 
 
