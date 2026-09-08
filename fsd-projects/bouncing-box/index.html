@@ -53,9 +53,11 @@
 
         // Every 50 milliseconds, call the update Function (see below)
         setInterval(update, 50);
-
+        
+      
         // Every time the box is clicked, call the handleBoxClick Function (see below)
         box.on("click", handleBoxClick);
+        
 
         // moves the Box to a new position on the screen along the X-Axis
         function moveBoxTo(newPositionX, newPositionY) {
@@ -79,6 +81,7 @@
         var positionY=300;
         var speedY = 5;
         var boardHeight = jQuery(window).height();
+        var randNum = Math.random() * 100;
 
 
 
@@ -108,7 +111,6 @@
           speedY *= -1;
         }
         
-        
 
           
         }
@@ -132,6 +134,8 @@
 
 
         }
+
+        
 
 
         
